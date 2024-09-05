@@ -254,10 +254,10 @@ which is the length of the walk $s \rightarrow w \rightarrow y \rightarrow x \ri
  \\ \textbf{Algorithm}\\
  \begin{enumerate}
      \item For each vertex $v_i$ in the graph insert 3 new vertices, $v_{i,0}$ \& $v_{i,1}$ \& $v_{i,2}$. Each of these 3 new states represent the $mod(walkLength,3)$ taken to reach the vertex $v_i$. 
-     \item For each edge $e_k$ in the graph between $v_i$ \& $v_j$ , insert 3 new edges,  $e_{k,1}$ betwen $v_{i,0}$ \&  $v_{j,1}$, $e_{k,2}$ betwen $v_{i,1}$ \&  $v_{j,2}$, $e_{k,3}$ betwen $v_{i,2}$ \&  $v_{j,0}$.
-     \item In the new graph, we want to find the shortest path from $p_{0}$ to $q_{0}$, the source and destinations of the original graph. 
+     \item For each edge $e_k$ in the graph between $v_i$ \& $v_j$ , insert 3 new edges with the same weight $w$ as original edge as follows,  $e_{k,1}$ betwen $v_{i,0}$ \&  $v_{j,(0+w)\%3}$, $e_{k,2}$ betwen $v_{i,1}$ \&  $v_{j,(1+w)\%3}$, $e_{k,3}$ betwen $v_{i,2}$ \&  $v_{j,(2+w)\%3}$.
+     \item In the new graph, we want to find the shortest path from $p_{0}$ (instance of starting point with reminder $0$) to $q_{0}$, the source and destinations of the original graph. 
      \item The aim is to make sure that we start with vertex having remainder $0$ and end with vertex having reminder $0$. 
-     \item Call Dijkstra's algorithm with $p_{0}$ , $q_{0}$ as arguments as all edges have positive weight 1. 
+     \item Call Dijkstra's algorithm with $s_{0}$ , $t_{0}$ as arguments as all edges have positive weight. 
      \item The result for this graph is same as walk length of the original graph.
  \end{enumerate}
  \\ \textbf{Runtime Analysis} \\
